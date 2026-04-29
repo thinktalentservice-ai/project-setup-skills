@@ -1,0 +1,106 @@
+/* Custom styles layered on top of Tailwind + Bootstrap Icons */
+
+html { scroll-behavior: smooth; }
+
+/* Background glow orbs */
+.bg-orb-1 {
+  background: radial-gradient(ellipse 900px 600px at 20% -10%, rgba(55, 90, 220, 0.11), transparent);
+}
+.bg-orb-2 {
+  background: radial-gradient(ellipse 700px 500px at 85% 90%, rgba(52, 183, 110, 0.07), transparent);
+}
+
+/* Pulsing dot — opacity only (compositor, no Paint) */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+.pulse-dot { animation: pulse-dot 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* Card top accent bars */
+.card-accent-green::before {
+  content: "";
+  display: block;
+  height: 2px;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(90deg, #4ade80, transparent 80%);
+  margin: -1px -1px 0;
+}
+.card-accent-blue::before {
+  content: "";
+  display: block;
+  height: 2px;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(90deg, #60a5fa, transparent 80%);
+  margin: -1px -1px 0;
+}
+
+/* Code font */
+code, pre, .mono { font-family: "Fira Code", "Cascadia Code", "Consolas", monospace; }
+
+/* Thin scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #0c1120; }
+::-webkit-scrollbar-thumb { background: #1e2d54; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2e4080; }
+
+/* Syntax tokens */
+.token-cmd { color: #fbbf24; }
+.token-str { color: #4ade80; }
+.token-cm  { color: #4a5a8a; font-style: italic; }
+.token-kw  { color: #60a5fa; }
+
+/* Toast */
+#toast {
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(10px);
+  opacity: 0;
+}
+#toast.show { transform: translateY(0); opacity: 1; }
+
+/* Step connector line */
+.step-connector::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 44px;
+  width: 1px;
+  height: calc(100% - 16px);
+  background: #1e2d54;
+}
+
+/* Nav blur — vendor prefix first */
+.nav-blur {
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+/* Hover lift */
+.hover-lift {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.18s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 48px rgba(8, 12, 26, 0.55);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Stagger children */
+.stagger .reveal:nth-child(1) { transition-delay: 0ms; }
+.stagger .reveal:nth-child(2) { transition-delay: 80ms; }
+.stagger .reveal:nth-child(3) { transition-delay: 160ms; }
+.stagger .reveal:nth-child(4) { transition-delay: 240ms; }
+
+/* Copy button success state */
+.copy-success { color: #4ade80 !important; }

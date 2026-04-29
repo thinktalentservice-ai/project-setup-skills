@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>project-setup-skills — Claude Code Plugin</title>
+    <meta name="description"
+        content="Claude Code plugin with Caveman Ultra mode and CLAUDE.md project setup. Install once, works across every session and project." />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#080d1a',
+                        surface: '#0f1629',
+                        card: '#131c35',
+                        border: '#1e2d54',
+                        borderb: '#2e4080',
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', '"Cascadia Code"', 'Consolas', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Custom overrides -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-bg text-slate-200 min-h-screen overflow-x-hidden">
+
+    <!-- Background orbs -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute inset-0 bg-orb-1"></div>
+        <div class="absolute inset-0 bg-orb-2"></div>
+    </div>
+
+    <!-- ── NAV ─────────────────────────────────────── -->
+    <nav class="sticky top-0 z-50 nav-blur bg-bg/80 border-b border-border transition-shadow">
+        <div class="max-w-5xl mx-auto px-6 h-14 flex items-center gap-6">
+
+            <a href="#" class="font-bold text-green-400 flex items-center gap-2 shrink-0 text-sm tracking-tight">
+                <i class="bi bi-plugin text-base"></i>
+                project-setup-skills
+            </a>
+
+            <div class="hidden md:flex gap-1 items-center">
+                <a href="#plugins"
+                    class="text-slate-400 hover:text-slate-200 text-sm px-3 py-1.5 rounded hover:bg-white/5 transition-colors">Plugins</a>
+                <a href="#install"
+                    class="text-slate-400 hover:text-slate-200 text-sm px-3 py-1.5 rounded hover:bg-white/5 transition-colors">Install</a>
+                <a href="#cli"
+                    class="text-slate-400 hover:text-slate-200 text-sm px-3 py-1.5 rounded hover:bg-white/5 transition-colors">CLI
+                    Ref</a>
+                <a href="#how"
+                    class="text-slate-400 hover:text-slate-200 text-sm px-3 py-1.5 rounded hover:bg-white/5 transition-colors">How
+                    It Works</a>
+            </div>
+
+            <div class="ml-auto flex items-center gap-2">
+                <a href="https://github.com/thinktalentservice-ai/project-setup-skills" target="_blank" rel="noopener"
+                    class="flex items-center gap-2 text-sm text-slate-400 hover:text-slate-200 border border-border hover:border-borderb px-3 py-1.5 rounded-full transition-all">
+                    <i class="bi bi-github"></i>
+                    <span class="hidden sm:inline">GitHub</span>
+                </a>
+                <a href="#install"
+                    class="flex items-center gap-2 text-sm font-semibold bg-green-400 hover:bg-green-300 text-gray-900 px-4 py-1.5 rounded-full transition-all hover:shadow-[0_0_16px_rgba(74,222,128,0.3)]">
+                    <i class="bi bi-download"></i>
+                    Install
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="relative z-10">
+
+        <!-- ── HERO ──────────────────────────────────── -->
+        <section class="text-center px-6 pt-24 pb-20 max-w-5xl mx-auto">
+
+            <div
+                class="inline-flex items-center gap-2 bg-green-400/10 border border-green-400/25 text-green-400 text-xs font-bold px-3 py-1.5 rounded-full mb-8 uppercase tracking-widest">
+                <span class="w-1.5 h-1.5 bg-green-400 rounded-full pulse-dot"></span>
+                Claude Code Plugin
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-5 leading-[1.1] tracking-tight text-slate-50">
+                Every session.<br class="hidden sm:block" />
+                <span class="text-green-400">Zero setup.</span>
+            </h1>
+
+            <p class="text-slate-400 text-lg max-w-lg mx-auto mb-10 leading-relaxed">
+                One plugin install activates <strong class="text-slate-300 font-semibold">Caveman Ultra</strong>
+                globally and sets up
+                <strong class="text-slate-300 font-semibold">CLAUDE.md</strong> in any project — no config, no
+                boilerplate.
+            </p>
+
+            <div class="flex flex-wrap gap-3 justify-center mb-14">
+                <a href="#install"
+                    class="inline-flex items-center gap-2 bg-green-400 hover:bg-green-300 text-gray-900 font-bold px-6 py-2.5 rounded-full text-sm transition-all hover:shadow-[0_0_20px_rgba(74,222,128,0.3)]">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                    Get started
+                </a>
+                <a href="https://github.com/thinktalentservice-ai/project-setup-skills" target="_blank" rel="noopener"
+                    class="inline-flex items-center gap-2 text-slate-300 border border-border hover:border-borderb px-6 py-2.5 rounded-full text-sm transition-all hover:bg-white/5">
+                    <i class="bi bi-star"></i>
+                    Star on GitHub
+                </a>
+            </div>
+
+            <!-- Quick install bar -->
+            <div class="inline-flex items-center bg-surface border border-border rounded-xl overflow-hidden shadow-xl max-w-full"
+                data-code-wrap>
+                <span
+                    class="px-4 py-3 text-xs font-bold text-green-400 border-r border-border bg-green-400/5 font-mono shrink-0">$</span>
+                <pre
+                    class="px-4 py-3 text-sm text-slate-200 m-0 font-mono overflow-x-auto whitespace-nowrap">claude plugin marketplace add thinktalentservice-ai/project-setup-skills</pre>
+                <button type="button" data-copy-block
+                    class="px-4 py-3 text-slate-500 hover:text-green-400 border-l border-border transition-colors shrink-0"
+                    title="Copy command">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+
+        </section>
+
+        <!-- ── PLUGINS ────────────────────────────────── -->
+        <section id="plugins" class="border-t border-border py-20">
+            <div class="max-w-5xl mx-auto px-6">
+
+                <p class="text-xs font-bold text-green-400 uppercase tracking-widest mb-3">Plugins</p>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3 text-slate-100">Two skills. Both permanent.</h2>
+                <p class="text-slate-400 mb-12 max-w-md">Install once. Both skills are available globally — across every
+                    project and every session.</p>
+
+                <div class="grid md:grid-cols-2 gap-5 stagger">
+
+                    <!-- caveman-ultra-setup -->
+                    <div
+                        class="reveal bg-card border border-border rounded-xl p-7 relative overflow-hidden hover-lift card-accent-green">
+                        <div class="w-11 h-11 rounded-xl bg-green-400/10 flex items-center justify-center text-xl mb-5">
+                            🦴</div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <h3 class="font-bold text-base">caveman-ultra-setup</h3>
+                            <span class="text-xs bg-white/5 px-2 py-0.5 rounded-full text-slate-500">v1.0</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-5 leading-relaxed">
+                            Writes a global <code class="mono text-green-300 text-xs">SessionStart</code> hook into
+                            <code class="mono text-green-300 text-xs">~/.claude/settings.json</code>.
+                            Activates <strong class="text-slate-300">Caveman Ultra mode</strong> automatically in every
+                            future Claude session, across all projects.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="text-xs px-2.5 py-1 rounded-full font-semibold bg-green-400/10 text-green-400 border border-green-400/20">Global
+                                hook</span>
+                            <span
+                                class="text-xs px-2.5 py-1 rounded-full font-semibold bg-green-400/10 text-green-400 border border-green-400/20">Auto-activate</span>
+                            <span
+                                class="text-xs px-2.5 py-1 rounded-full font-semibold bg-green-400/10 text-green-400 border border-green-400/20">Python
+                                script</span>
+                        </div>
+                    </div>
+
+                    <!-- claude-md-setup -->
+                    <div
+                        class="reveal bg-card border border-border rounded-xl p-7 relative overflow-hidden hover-lift card-accent-blue">
+                        <div class="w-11 h-11 rounded-xl bg-blue-400/10 flex items-center justify-center text-xl mb-5">
+                            📋</div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <h3 class="font-bold text-base">claude-md-setup</h3>
+                            <span class="text-xs bg-white/5 px-2 py-0.5 rounded-full text-slate-500">v1.0</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-5 leading-relaxed">
+                            Creates or updates <code class="mono text-blue-300 text-xs">CLAUDE.md</code> in any project
+                            root with three standard sections:
+                            ruthless mentor mode, caveman ultra, and skill usage rules.
+                            Smart merge — never overwrites existing content.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="text-xs px-2.5 py-1 rounded-full font-semibold bg-blue-400/10 text-blue-400 border border-blue-400/20">Smart
+                                merge</span>
+                            <span
+                                class="text-xs px-2.5 py-1 rounded-full font-semibold bg-blue-400/10 text-blue-400 border border-blue-400/20">Per-project</span>
+                            <span
+                                class="text-xs px-2.5 py-1 rounded-full font-semibold bg-blue-400/10 text-blue-400 border border-blue-400/20">Template-based</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── INSTALL ────────────────────────────────── -->
+        <section id="install" class="border-t border-border py-20">
+            <div class="max-w-5xl mx-auto px-6">
+
+                <p class="text-xs font-bold text-green-400 uppercase tracking-widest mb-3">Installation</p>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3 text-slate-100">Up and running in 4 steps</h2>
+                <p class="text-slate-400 mb-16">Requires Claude Code with plugin support, Python 3, and a bash shell.
+                </p>
+
+                <div class="flex flex-col">
+
+                    <!-- Step 1 -->
+                    <div class="reveal grid grid-cols-[40px_1fr] gap-5 pb-12 relative step-connector">
+                        <div
+                            class="w-10 h-10 rounded-full bg-card border border-borderb text-green-400 font-bold text-sm flex items-center justify-center z-10 relative shrink-0">
+                            1</div>
+                        <div>
+                            <h3 class="font-semibold mb-1.5 mt-1.5 text-slate-100">Add marketplace and install plugins
+                            </h3>
+                            <p class="text-slate-400 text-sm mb-4">Register the source, then install both plugins. Each
+                                downloads and registers its skills on the next session start.</p>
+                            <div data-code-wrap>
+                                <div class="bg-surface border border-border rounded-xl overflow-hidden">
+                                    <div
+                                        class="flex items-center justify-between px-4 py-2 border-b border-border bg-white/[0.02]">
+                                        <span
+                                            class="text-xs text-slate-500 font-semibold uppercase tracking-wide font-mono">bash</span>
+                                        <button type="button" data-copy-block
+                                            class="flex items-center gap-1.5 text-xs text-slate-500 hover:text-green-400 px-2 py-1 rounded transition-colors">
+                                            <i class="bi bi-clipboard"></i> Copy
+                                        </button>
+                                    </div>
+                                    <pre class="p-4 text-sm leading-7 m-0 overflow-x-auto font-mono"><span class="token-cmd">claude</span> plugin marketplace add thinktalentservice-ai/project-setup-skills
+<span class="token-cmd">claude</span> plugin install caveman-ultra-setup@project-setup-skills
+<span class="token-cmd">claude</span> plugin install claude-md-setup@project-setup-skills</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="reveal grid grid-cols-[40px_1fr] gap-5 pb-12 relative step-connector">
+                        <div
+                            class="w-10 h-10 rounded-full bg-card border border-borderb text-green-400 font-bold text-sm flex items-center justify-center z-10 relative shrink-0">
+                            2</div>
+                        <div>
+                            <h3 class="font-semibold mb-1.5 mt-1.5 text-slate-100">Restart Claude Code</h3>
+                            <p class="text-slate-400 text-sm mb-4">Close and reopen Claude Code. Plugin hooks register
+                                on the next session start.</p>
+                            <div
+                                class="flex items-start gap-3 bg-blue-400/5 border border-blue-400/20 rounded-lg px-4 py-3 text-sm text-blue-300">
+                                <i class="bi bi-info-circle-fill text-base mt-0.5 shrink-0"></i>
+                                A full restart is required for plugin hooks to activate.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="reveal grid grid-cols-[40px_1fr] gap-5 pb-12 relative step-connector">
+                        <div
+                            class="w-10 h-10 rounded-full bg-card border border-borderb text-green-400 font-bold text-sm flex items-center justify-center z-10 relative shrink-0">
+                            3</div>
+                        <div>
+                            <h3 class="font-semibold mb-1.5 mt-1.5 text-slate-100">Invoke a skill</h3>
+                            <p class="text-slate-400 text-sm mb-5">Use a natural trigger phrase or slash command. Claude
+                                runs the skill automatically.</p>
+
+                            <div data-tab-group="invoke">
+                                <div class="flex gap-1 border-b border-border mb-5">
+                                    <button type="button"
+                                        class="text-sm font-semibold pb-2.5 px-1 mr-3 border-b-2 transition-colors"
+                                        data-tab="invoke" data-tab-target="caveman">
+                                        🦴 Caveman Ultra
+                                    </button>
+                                    <button type="button"
+                                        class="text-sm font-semibold pb-2.5 px-1 mr-3 border-b-2 transition-colors"
+                                        data-tab="invoke" data-tab-target="claudemd">
+                                        📋 CLAUDE.md
+                                    </button>
+                                </div>
+
+                                <div data-tab-panel="invoke" data-tab-panel-id="caveman">
+                                    <p class="text-slate-400 text-sm mb-3">Say any of these in a Claude session:</p>
+                                    <div data-code-wrap>
+                                        <div class="bg-surface border border-border rounded-xl overflow-hidden">
+                                            <div
+                                                class="flex items-center justify-between px-4 py-2 border-b border-border bg-white/[0.02]">
+                                                <span
+                                                    class="text-xs text-slate-500 font-semibold uppercase tracking-wide font-mono">trigger
+                                                    phrases</span>
+                                                <button type="button" data-copy-block
+                                                    class="flex items-center gap-1.5 text-xs text-slate-500 hover:text-green-400 px-2 py-1 rounded transition-colors">
+                                                    <i class="bi bi-clipboard"></i> Copy
+                                                </button>
+                                            </div>
+                                            <pre class="p-4 text-sm leading-7 m-0 font-mono">set up caveman ultra globally
+/caveman-ultra-setup</pre>
+                                        </div>
+                                    </div>
+                                    <p class="text-slate-500 text-xs mt-3">
+                                        Claude runs the install script, writes the <code
+                                            class="mono text-green-300">SessionStart</code> hook, and caveman ultra is
+                                        active in every future session.
+                                    </p>
+                                </div>
+
+                                <div data-tab-panel="invoke" data-tab-panel-id="claudemd" class="hidden">
+                                    <p class="text-slate-400 text-sm mb-3">Say any of these inside a project:</p>
+                                    <div data-code-wrap>
+                                        <div class="bg-surface border border-border rounded-xl overflow-hidden">
+                                            <div
+                                                class="flex items-center justify-between px-4 py-2 border-b border-border bg-white/[0.02]">
+                                                <span
+                                                    class="text-xs text-slate-500 font-semibold uppercase tracking-wide font-mono">trigger
+                                                    phrases</span>
+                                                <button type="button" data-copy-block
+                                                    class="flex items-center gap-1.5 text-xs text-slate-500 hover:text-green-400 px-2 py-1 rounded transition-colors">
+                                                    <i class="bi bi-clipboard"></i> Copy
+                                                </button>
+                                            </div>
+                                            <pre class="p-4 text-sm leading-7 m-0 font-mono">set up CLAUDE.md
+init project
+add mentor mode
+/claude-md-setup</pre>
+                                        </div>
+                                    </div>
+                                    <p class="text-slate-500 text-xs mt-3">
+                                        Claude writes <code class="mono text-blue-300">./CLAUDE.md</code> into the
+                                        current project root. Only missing sections are added — existing content is
+                                        never touched.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="reveal grid grid-cols-[40px_1fr] gap-5">
+                        <div
+                            class="w-10 h-10 rounded-full bg-card border border-borderb text-green-400 font-bold text-sm flex items-center justify-center z-10 relative shrink-0">
+                            4</div>
+                        <div>
+                            <h3 class="font-semibold mb-1.5 mt-1.5 text-slate-100">Verify the caveman hook</h3>
+                            <p class="text-slate-400 text-sm mb-4">Run this one-liner to confirm the hook was written to
+                                your global settings.</p>
+                            <div data-code-wrap>
+                                <div class="bg-surface border border-border rounded-xl overflow-hidden">
+                                    <div
+                                        class="flex items-center justify-between px-4 py-2 border-b border-border bg-white/[0.02]">
+                                        <span
+                                            class="text-xs text-slate-500 font-semibold uppercase tracking-wide font-mono">python3</span>
+                                        <button type="button" data-copy-block
+                                            class="flex items-center gap-1.5 text-xs text-slate-500 hover:text-green-400 px-2 py-1 rounded transition-colors">
+                                            <i class="bi bi-clipboard"></i> Copy
+                                        </button>
+                                    </div>
+                                    <pre class="p-4 text-sm leading-relaxed m-0 overflow-x-auto font-mono">python3 -c "
+import json; from pathlib import Path
+s = json.load(open(Path.home() / '.claude/settings.json'))
+hooks = s.get('hooks', {}).get('SessionStart', [])
+found = any('CAVEMAN ULTRA' in h.get('command','')
+            for e in hooks for h in e.get('hooks',[]))
+print('Hook installed:', found)
+"</pre>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 bg-green-400/5 border border-green-400/20 rounded-lg px-4 py-3 text-sm text-green-300 mt-4">
+                                <i class="bi bi-check-circle-fill text-base shrink-0"></i>
+                                Expected: <code class="mono text-green-400 ml-1">Hook installed: True</code>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── HOW IT WORKS ───────────────────────────── -->
+        <section id="how" class="border-t border-border py-20">
+            <div class="max-w-5xl mx-auto px-6">
+
+                <p class="text-xs font-bold text-green-400 uppercase tracking-widest mb-3">How It Works</p>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3 text-slate-100">Under the hood</h2>
+                <p class="text-slate-400 mb-12">Two separate flows — one per plugin.</p>
+
+                <div class="grid md:grid-cols-2 gap-10">
+
+                    <!-- Caveman flow -->
+                    <div class="reveal">
+                        <h3 class="text-xs font-bold text-green-400 uppercase tracking-widest mb-5">🦴 Caveman Ultra
+                        </h3>
+                        <div class="flex flex-col gap-2">
+                            <div
+                                class="flex items-start gap-3 bg-surface border border-border rounded-lg px-4 py-3 text-sm">
+                                <i class="bi bi-play-circle-fill text-green-400 mt-0.5 shrink-0"></i>
+                                <span><strong class="text-slate-200">SessionStart</strong> fires when Claude Code
+                                    opens</span>
+                            </div>
+                            <div class="text-slate-600 text-lg text-center py-0.5">↓</div>
+                            <div
+                                class="flex items-start gap-3 bg-surface border border-border rounded-lg px-4 py-3 text-sm">
+                                <i class="bi bi-terminal-fill text-yellow-400 mt-0.5 shrink-0"></i>
+                                <span>Harness runs <code
+                                        class="mono text-xs text-green-300">install-caveman-hook.py</code></span>
+                            </div>
+                            <div class="text-slate-600 text-lg text-center py-0.5">↓</div>
+                            <div
+                                class="flex items-start gap-3 bg-surface border border-border rounded-lg px-4 py-3 text-sm">
+                                <i class="bi bi-braces-asterisk text-blue-400 mt-0.5 shrink-0"></i>
+                                <span>Outputs <code class="mono text-xs text-blue-300">additionalContext</code> JSON to
+                                    stdout</span>
+                            </div>
+                            <div class="text-slate-600 text-lg text-center py-0.5">↓</div>
+                            <div
+                                class="flex items-start gap-3 bg-green-400/5 border border-green-400/20 rounded-lg px-4 py-3 text-sm">
+                                <i class="bi bi-check-circle-fill text-green-400 mt-0.5 shrink-0"></i>
+                                <span class="text-green-300">Caveman ultra rules injected into model context. Every
+                                    response: ultra mode.</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4">Say <code class="mono text-slate-400">stop caveman</code>
+                            or <code class="mono text-slate-400">normal mode</code> to deactivate.</p>
+                    </div>
+
+                    <!-- CLAUDE.md flow -->
+                    <div class="reveal">
+                        <h3 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-5">📋 CLAUDE.md Setup
+                        </h3>
+                        <div class="flex flex-col gap-2">
+                            <div
+                                class="flex items-start gap-3 bg-surface border border-border rounded-lg px-4 py-3 text-sm">
+                                <i class="bi bi-chat-dots-fill text-slate-400 mt-0.5 shrink-0"></i>
+                                <span>User triggers skill: <em class="text-slate-300">"set up CLAUDE.md"</em></span>
+                            </div>
+                            <div class="text-slate-600 text-lg text-center py-0.5">↓</div>
+                            <div
+                                class="flex items-start gap-3 bg-surface border border-border rounded-lg px-4 py-3 text-sm">
+                                <i class="bi bi-search text-purple-400 mt-0.5 shrink-0"></i>
+                                <span>Skill checks if <code class="mono text-xs text-blue-300">./CLAUDE.md</code>
+                                    already exists</span>
+                            </div>
+                            <div class="text-slate-600 text-lg text-center py-0.5">↓</div>
+                            <div
+                                class="flex items-start gap-3 bg-surface border border-border rounded-lg px-4 py-3 text-sm">
+                                <i class="bi bi-file-earmark-diff-fill text-yellow-400 mt-0.5 shrink-0"></i>
+                                <span><strong class="text-slate-200">Smart merge</strong> — appends only missing
+                                    sections, preserves existing content</span>
+                            </div>
+                            <div class="text-slate-600 text-lg text-center py-0.5">↓</div>
+                            <div
+                                class="flex items-start gap-3 bg-blue-400/5 border border-blue-400/20 rounded-lg px-4 py-3 text-sm">
+                                <i class="bi bi-check-circle-fill text-blue-400 mt-0.5 shrink-0"></i>
+                                <span class="text-blue-300">CLAUDE.md written with mentor mode, caveman ultra, and skill
+                                    usage sections.</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4">Never touches <code
+                                class="mono text-slate-400">~/.claude/CLAUDE.md</code> — only the current project root.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CLI REFERENCE ──────────────────────────── -->
+        <section id="cli" class="border-t border-border py-20">
+            <div class="max-w-5xl mx-auto px-6">
+
+                <p class="text-xs font-bold text-green-400 uppercase tracking-widest mb-3">CLI Reference</p>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-3 text-slate-100">Plugin management</h2>
+                <p class="text-slate-400 mb-12">All plugin management via the <code
+                        class="mono text-sm text-green-300">claude plugin</code> CLI. Click any command to copy.</p>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger">
+
+                    <div class="reveal bg-card border border-border rounded-xl p-5">
+                        <div
+                            class="text-xs font-bold text-green-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <i class="bi bi-download"></i> Install
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="bg-bg border border-border rounded-lg px-3 py-2.5 cursor-pointer hover:border-borderb transition-colors relative group"
+                                data-copytext="claude plugin marketplace add thinktalentservice-ai/project-setup-skills">
+                                <code
+                                    class="mono text-xs text-green-400 block truncate">claude plugin marketplace add thinktalentservice-ai/project-setup-skills</code>
+                                <span class="text-xs text-slate-500">Add marketplace</span>
+                                <span
+                                    class="absolute top-2 right-2 text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">copy</span>
+                            </div>
+                            <div class="bg-bg border border-border rounded-lg px-3 py-2.5 cursor-pointer hover:border-borderb transition-colors relative group"
+                                data-copytext="claude plugin install caveman-ultra-setup@project-setup-skills">
+                                <code
+                                    class="mono text-xs text-green-400 block truncate">claude plugin install caveman-ultra-setup@project-setup-skills</code>
+                                <span class="text-xs text-slate-500">Install caveman plugin</span>
+                                <span
+                                    class="absolute top-2 right-2 text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">copy</span>
+                            </div>
+                            <div class="bg-bg border border-border rounded-lg px-3 py-2.5 cursor-pointer hover:border-borderb transition-colors relative group"
+                                data-copytext="claude plugin install claude-md-setup@project-setup-skills">
+                                <code
+                                    class="mono text-xs text-green-400 block truncate">claude plugin install claude-md-setup@project-setup-skills</code>
+                                <span class="text-xs text-slate-500">Install CLAUDE.md plugin</span>
+                                <span
+                                    class="absolute top-2 right-2 text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">copy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal bg-card border border-border rounded-xl p-5">
+                        <div
+                            class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <i class="bi bi-arrow-repeat"></i> Update
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="bg-bg border border-border rounded-lg px-3 py-2.5 cursor-pointer hover:border-borderb transition-colors relative group"
+                                data-copytext="claude plugin update caveman-ultra-setup@project-setup-skills">
+                                <code
+                                    class="mono text-xs text-blue-400 block truncate">claude plugin update caveman-ultra-setup@project-setup-skills</code>
+                                <span class="text-xs text-slate-500">Update caveman plugin</span>
+                                <span
+                                    class="absolute top-2 right-2 text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">copy</span>
+                            </div>
+                            <div class="bg-bg border border-border rounded-lg px-3 py-2.5 cursor-pointer hover:border-borderb transition-colors relative group"
+                                data-copytext="claude plugin update claude-md-setup@project-setup-skills">
+                                <code
+                                    class="mono text-xs text-blue-400 block truncate">claude plugin update claude-md-setup@project-setup-skills</code>
+                                <span class="text-xs text-slate-500">Update CLAUDE.md plugin</span>
+                                <span
+                                    class="absolute top-2 right-2 text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">copy</span>
+                            </div>
+                            <div class="bg-bg border border-border rounded-lg px-3 py-2.5 cursor-pointer hover:border-borderb transition-colors relative group"
+                                data-copytext="claude plugin list">
+                                <code class="mono text-xs text-blue-400 block truncate">claude plugin list</code>
+                                <span class="text-xs text-slate-500">List installed plugins</span>
+                                <span
+                                    class="absolute top-2 right-2 text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">copy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal bg-card border border-border rounded-xl p-5">
+                        <div
+                            class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <i class="bi bi-toggle-on"></i> Enable / Disable
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="bg-bg border border-border rounded-lg px-3 py-2.5 cursor-pointer hover:border-borderb transition-colors relative group"
+                                data-copytext="claude plugin disable caveman-ultra-setup@project-setup-skills">
+                                <code
+                                    class="mono text-xs text-purple-400 block truncate">claude plugin disable caveman-ultra-setup@project-setup-skills</code>
+                                <span class="text-xs text-slate-500">Disable caveman plugin</span>
+                                <span
+                                    class="absolute top-2 right-2 text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">copy</span>
+                            </div>
+                            <div class="bg-bg border border-border rounded-lg px-3 py-2.5 cursor-pointer hover:border-borderb transition-colors relative group"
+                                data-copytext="claude plugin enable caveman-ultra-setup@project-setup-skills">
+                                <code
+                                    class="mono text-xs text-purple-400 block truncate">claude plugin enable caveman-ultra-setup@project-setup-skills</code>
+                                <span class="text-xs text-slate-500">Re-enable caveman plugin</span>
+                                <span
+                                    class="absolute top-2 right-2 text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">copy</span>
+                            </div>
+                            <div class="bg-bg border border-border rounded-lg px-3 py-2.5 cursor-pointer hover:border-borderb transition-colors relative group"
+                                data-copytext="claude plugin uninstall caveman-ultra-setup@project-setup-skills">
+                                <code
+                                    class="mono text-xs text-purple-400 block truncate">claude plugin uninstall caveman-ultra-setup@project-setup-skills</code>
+                                <span class="text-xs text-slate-500">Remove caveman plugin</span>
+                                <span
+                                    class="absolute top-2 right-2 text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">copy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── REQUIREMENTS ──────────────────────────── -->
+        <section class="border-t border-border py-16">
+            <div class="max-w-5xl mx-auto px-6">
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-8">Requirements</p>
+                <div
+                    class="flex flex-col sm:flex-row gap-0 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-border border border-border rounded-xl overflow-hidden">
+                    <div class="flex items-center gap-4 px-6 py-5 flex-1 bg-card">
+                        <i class="bi bi-terminal text-green-400 text-2xl shrink-0"></i>
+                        <div>
+                            <div class="font-semibold text-sm text-slate-100">Claude Code</div>
+                            <div class="text-xs text-slate-500 mt-0.5">CLI or desktop app with plugin support</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 px-6 py-5 flex-1 bg-card">
+                        <i class="bi bi-filetype-py text-yellow-400 text-2xl shrink-0"></i>
+                        <div>
+                            <div class="font-semibold text-sm text-slate-100">Python 3</div>
+                            <div class="text-xs text-slate-500 mt-0.5">For the caveman hook install script</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 px-6 py-5 flex-1 bg-card">
+                        <i class="bi bi-git text-blue-400 text-2xl shrink-0"></i>
+                        <div>
+                            <div class="font-semibold text-sm text-slate-100">Bash shell</div>
+                            <div class="text-xs text-slate-500 mt-0.5">Git Bash on Windows works fine</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ── FOOTER ──────────────────────────────────── -->
+    <footer class="border-t border-border py-10 px-6 relative z-10">
+        <div
+            class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 text-sm text-slate-500">
+            <div class="flex items-center gap-2 text-green-400 font-bold text-sm">
+                <i class="bi bi-plugin"></i>
+                project-setup-skills
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="https://github.com/thinktalentservice-ai/project-setup-skills" target="_blank" rel="noopener"
+                    class="hover:text-slate-300 transition-colors flex items-center gap-1.5">
+                    <i class="bi bi-github"></i> GitHub
+                </a>
+                <a href="https://github.com/thinktalentservice-ai/project-setup-skills/blob/main/README.md"
+                    target="_blank" rel="noopener"
+                    class="hover:text-slate-300 transition-colors flex items-center gap-1.5">
+                    <i class="bi bi-book"></i> README
+                </a>
+                <a href="https://github.com/thinktalentservice-ai/project-setup-skills/issues" target="_blank"
+                    rel="noopener" class="hover:text-slate-300 transition-colors flex items-center gap-1.5">
+                    <i class="bi bi-bug"></i> Issues
+                </a>
+            </div>
+            <div>Built for <a href="https://claude.ai/code" target="_blank" rel="noopener"
+                    class="hover:text-slate-300 transition-colors">Claude Code</a></div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast"
+        class="fixed bottom-6 right-6 bg-green-400 text-gray-900 text-xs font-bold px-4 py-2.5 rounded-lg z-50 pointer-events-none shadow-xl">
+        Copied!
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
