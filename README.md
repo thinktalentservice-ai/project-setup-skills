@@ -6,7 +6,7 @@ A Claude Code plugin marketplace with setup skills for global developer environm
 
 ### caveman-ultra-setup
 
-Installs a global `SessionStart` hook into `~/.claude/settings.json` that activates **caveman ultra mode** automatically in every Claude Code session, across all projects.
+Installs a global `SessionStart` hook that activates **caveman ultra mode** automatically in every Claude Code session, across all projects.
 
 Caveman ultra: terse, compressed responses — abbreviations, arrows for causality, one word when one word enough. Off with `stop caveman` or `normal mode`.
 
@@ -29,25 +29,12 @@ Invoke `/claude-md-setup` or use a natural trigger phrase in any session.
 
 ## Install
 
-### 1. Register marketplace + enable plugins
+### 1. Add marketplace + install plugins
 
-Add to `~/.claude/settings.json`:
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "project-setup-skills": {
-      "source": {
-        "source": "github",
-        "repo": "thinktalentservice-ai/project-setup-skills"
-      }
-    }
-  },
-  "enabledPlugins": {
-    "caveman-ultra-setup@project-setup-skills": true,
-    "claude-md-setup@project-setup-skills": true
-  }
-}
+```bash
+claude plugin marketplace add thinktalentservice-ai/project-setup-skills
+claude plugin install caveman-ultra-setup@project-setup-skills
+claude plugin install claude-md-setup@project-setup-skills
 ```
 
 ### 2. Restart Claude Code
@@ -84,39 +71,6 @@ print('Hook installed:', found)
 
 ## Plugin CLI
 
-Claude Code provides a `claude plugin` command for non-interactive plugin management.
-
-> **Note:** There is no CLI command for registering a marketplace. Do that once in `~/.claude/settings.json` (see [Install](#install) step 1), then use the CLI commands below for everything else.
-
-### Install
-
-**Step 1 — register the marketplace** (one-time, edit `~/.claude/settings.json`):
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "project-setup-skills": {
-      "source": {
-        "source": "github",
-        "repo": "thinktalentservice-ai/project-setup-skills"
-      }
-    }
-  }
-}
-```
-
-**Step 2 — install plugins via CLI:**
-
-```bash
-# Install both plugins (user scope — default)
-claude plugin install caveman-ultra-setup@project-setup-skills
-claude plugin install claude-md-setup@project-setup-skills
-
-# Or install to project scope (shared with the team, written to .claude/settings.json)
-claude plugin install caveman-ultra-setup@project-setup-skills --scope project
-claude plugin install claude-md-setup@project-setup-skills --scope project
-```
-
 ### Update
 
 ```bash
@@ -127,31 +81,21 @@ claude plugin update claude-md-setup@project-setup-skills
 ### Disable / Enable
 
 ```bash
-# Disable without uninstalling
 claude plugin disable caveman-ultra-setup@project-setup-skills
-claude plugin disable claude-md-setup@project-setup-skills
-
-# Re-enable
 claude plugin enable caveman-ultra-setup@project-setup-skills
-claude plugin enable claude-md-setup@project-setup-skills
 ```
 
 ### Uninstall
 
 ```bash
-# Remove plugins (aliases: remove, rm)
 claude plugin uninstall caveman-ultra-setup@project-setup-skills
 claude plugin uninstall claude-md-setup@project-setup-skills
-
-# Remove and clean up orphaned dependencies in one step
-claude plugin uninstall caveman-ultra-setup@project-setup-skills --prune
 ```
 
 ### List
 
 ```bash
 claude plugin list
-claude plugin list --json   # machine-readable output
 ```
 
 ---
