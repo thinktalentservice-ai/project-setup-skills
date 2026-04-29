@@ -1,0 +1,18 @@
+{
+  "name": "project-setup-skills",
+  "owner": {
+    "name": "ThinkTalent Service AI"
+  },
+  "plugins": [
+    {
+      "name": "caveman-ultra-setup",
+      "description": "Global SessionStart hook installer for caveman ultra mode",
+      "source": "./caveman-ultra-setup"
+    },
+    {
+      "name": "claude-md-setup",
+      "description": "Creates or updates CLAUDE.md for any project with ruthless mentor mode, caveman ultra mode, and skill usage rules",
+      "source": "./claude-md-setup"
+    }
+  ]
+}

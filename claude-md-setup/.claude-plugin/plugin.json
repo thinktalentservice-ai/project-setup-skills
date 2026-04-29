@@ -1,0 +1,9 @@
+{
+  "name": "claude-md-setup",
+  "version": "0.1.0",
+  "description": "Creates or updates CLAUDE.md in any project with ruthless mentor mode, caveman ultra mode, and skill usage rules",
+  "author": {
+    "name": "ThinkTalent Service AI"
+  },
+  "keywords": ["claude.md", "setup", "init", "project", "mentor", "caveman"]
+}
