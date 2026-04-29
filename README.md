@@ -82,6 +82,80 @@ print('Hook installed:', found)
 
 ---
 
+## Plugin CLI
+
+Claude Code provides a `claude plugin` command for non-interactive plugin management.
+
+> **Note:** There is no CLI command for registering a marketplace. Do that once in `~/.claude/settings.json` (see [Install](#install) step 1), then use the CLI commands below for everything else.
+
+### Install
+
+**Step 1 — register the marketplace** (one-time, edit `~/.claude/settings.json`):
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "project-setup-skills": {
+      "source": {
+        "source": "github",
+        "repo": "thinktalentservice-ai/project-setup-skills"
+      }
+    }
+  }
+}
+```
+
+**Step 2 — install plugins via CLI:**
+
+```bash
+# Install both plugins (user scope — default)
+claude plugin install caveman-ultra-setup@project-setup-skills
+claude plugin install claude-md-setup@project-setup-skills
+
+# Or install to project scope (shared with the team, written to .claude/settings.json)
+claude plugin install caveman-ultra-setup@project-setup-skills --scope project
+claude plugin install claude-md-setup@project-setup-skills --scope project
+```
+
+### Update
+
+```bash
+claude plugin update caveman-ultra-setup@project-setup-skills
+claude plugin update claude-md-setup@project-setup-skills
+```
+
+### Disable / Enable
+
+```bash
+# Disable without uninstalling
+claude plugin disable caveman-ultra-setup@project-setup-skills
+claude plugin disable claude-md-setup@project-setup-skills
+
+# Re-enable
+claude plugin enable caveman-ultra-setup@project-setup-skills
+claude plugin enable claude-md-setup@project-setup-skills
+```
+
+### Uninstall
+
+```bash
+# Remove plugins (aliases: remove, rm)
+claude plugin uninstall caveman-ultra-setup@project-setup-skills
+claude plugin uninstall claude-md-setup@project-setup-skills
+
+# Remove and clean up orphaned dependencies in one step
+claude plugin uninstall caveman-ultra-setup@project-setup-skills --prune
+```
+
+### List
+
+```bash
+claude plugin list
+claude plugin list --json   # machine-readable output
+```
+
+---
+
 ## How caveman-ultra-setup works
 
 ```
