@@ -14,14 +14,16 @@ Caveman ultra: terse, compressed responses — abbreviations, arrows for causali
 
 ### claude-md-setup
 
-Creates or updates `CLAUDE.md` in any project root with three standard sections: **ruthless mentor mode**, **caveman ultra mode**, and **skill usage rules**.
+Creates or updates `CLAUDE.md`, `AGENTS.md`, and `.github/copilot-instructions.md` in any project root with three standard sections: **ruthless mentor mode**, **caveman ultra mode**, and **skill usage rules**.
 
 **How it works:**
 
 - **Trigger** — say `set up CLAUDE.md`, `init project`, `add mentor mode`, etc.
-- **Creates** `./CLAUDE.md` in the current project root from a bundled template
-- **Smart merge** — if file exists, appends only missing sections; preserves all existing content
+- **Creates** `./CLAUDE.md`, `./AGENTS.md`, `./.github/copilot-instructions.md` from a bundled template
+- **Smart merge** — if a file exists, appends only missing sections; preserves all existing content
 - **Safe** — never touches `~/.claude/CLAUDE.md`
+
+All three files get identical content — mentor mode, caveman ultra, and skill usage rules.
 
 Invoke `/claude-md-setup` or use a natural trigger phrase in any session.
 
@@ -53,7 +55,7 @@ Claude runs the install script → SessionStart hook written → caveman ultra a
 ```
 set up CLAUDE.md
 ```
-Claude writes `./CLAUDE.md` into the current project root.
+Claude writes `./CLAUDE.md`, `./AGENTS.md`, and `./.github/copilot-instructions.md` into the current project root.
 
 ### 4. Verify caveman hook
 

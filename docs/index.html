@@ -101,8 +101,9 @@
             <p class="text-slate-400 text-lg max-w-lg mx-auto mb-10 leading-relaxed">
                 One plugin install activates <strong class="text-slate-300 font-semibold">Caveman Ultra</strong>
                 globally and sets up
-                <strong class="text-slate-300 font-semibold">CLAUDE.md</strong> in any project — no config, no
-                boilerplate.
+                <strong class="text-slate-300 font-semibold">CLAUDE.md</strong>,
+                <strong class="text-slate-300 font-semibold">AGENTS.md</strong>, and
+                <strong class="text-slate-300 font-semibold">copilot-instructions.md</strong> in any project — no config, no boilerplate.
             </p>
 
             <div class="flex flex-wrap gap-3 justify-center mb-14">
@@ -140,8 +141,7 @@
 
                 <p class="text-xs font-bold text-green-400 uppercase tracking-widest mb-3">Plugins</p>
                 <h2 class="text-2xl sm:text-3xl font-bold mb-3 text-slate-100">Two skills. Both permanent.</h2>
-                <p class="text-slate-400 mb-12 max-w-md">Install once. Both skills are available globally — across every
-                    project and every session.</p>
+                <p class="text-slate-400 mb-12 max-w-md">Install once. Caveman Ultra activates globally every session. Project config writes to all three AI agent instruction files automatically.</p>
 
                 <div class="grid md:grid-cols-2 gap-5 stagger">
 
@@ -182,8 +182,10 @@
                             <span class="text-xs bg-white/5 px-2 py-0.5 rounded-full text-slate-500">v1.0</span>
                         </div>
                         <p class="text-slate-400 text-sm mb-5 leading-relaxed">
-                            Creates or updates <code class="mono text-blue-300 text-xs">CLAUDE.md</code> in any project
-                            root with three standard sections:
+                            Creates or updates <code class="mono text-blue-300 text-xs">CLAUDE.md</code>,
+                            <code class="mono text-blue-300 text-xs">AGENTS.md</code>, and
+                            <code class="mono text-blue-300 text-xs">.github/copilot-instructions.md</code> in any
+                            project root with three standard sections:
                             ruthless mentor mode, caveman ultra, and skill usage rules.
                             Smart merge — never overwrites existing content.
                         </p>
@@ -191,6 +193,8 @@
                             <span
                                 class="text-xs px-2.5 py-1 rounded-full font-semibold bg-blue-400/10 text-blue-400 border border-blue-400/20">Smart
                                 merge</span>
+                            <span
+                                class="text-xs px-2.5 py-1 rounded-full font-semibold bg-blue-400/10 text-blue-400 border border-blue-400/20">3 files</span>
                             <span
                                 class="text-xs px-2.5 py-1 rounded-full font-semibold bg-blue-400/10 text-blue-400 border border-blue-400/20">Per-project</span>
                             <span
@@ -329,8 +333,10 @@ add mentor mode
                                         </div>
                                     </div>
                                     <p class="text-slate-500 text-xs mt-3">
-                                        Claude writes <code class="mono text-blue-300">./CLAUDE.md</code> into the
-                                        current project root. Only missing sections are added — existing content is
+                                        Claude writes <code class="mono text-blue-300">./CLAUDE.md</code>,
+                                        <code class="mono text-blue-300">./AGENTS.md</code>, and
+                                        <code class="mono text-blue-300">./.github/copilot-instructions.md</code>
+                                        into the current project root. Only missing sections are added — existing content is
                                         never touched.
                                     </p>
                                 </div>
@@ -429,7 +435,7 @@ print('Hook installed:', found)
 
                     <!-- CLAUDE.md flow -->
                     <div class="reveal">
-                        <h3 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-5">📋 CLAUDE.md Setup
+                        <h3 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-5">📋 Project Config Setup
                         </h3>
                         <div class="flex flex-col gap-2">
                             <div
@@ -441,22 +447,20 @@ print('Hook installed:', found)
                             <div
                                 class="flex items-start gap-3 bg-surface border border-border rounded-lg px-4 py-3 text-sm">
                                 <i class="bi bi-search text-purple-400 mt-0.5 shrink-0"></i>
-                                <span>Skill checks if <code class="mono text-xs text-blue-300">./CLAUDE.md</code>
-                                    already exists</span>
+                                <span>Skill checks each target file: <code class="mono text-xs text-blue-300">CLAUDE.md</code>, <code class="mono text-xs text-blue-300">AGENTS.md</code>, <code class="mono text-xs text-blue-300">.github/copilot-instructions.md</code></span>
                             </div>
                             <div class="text-slate-600 text-lg text-center py-0.5">↓</div>
                             <div
                                 class="flex items-start gap-3 bg-surface border border-border rounded-lg px-4 py-3 text-sm">
                                 <i class="bi bi-file-earmark-diff-fill text-yellow-400 mt-0.5 shrink-0"></i>
-                                <span><strong class="text-slate-200">Smart merge</strong> — appends only missing
+                                <span><strong class="text-slate-200">Smart merge per file</strong> — appends only missing
                                     sections, preserves existing content</span>
                             </div>
                             <div class="text-slate-600 text-lg text-center py-0.5">↓</div>
                             <div
                                 class="flex items-start gap-3 bg-blue-400/5 border border-blue-400/20 rounded-lg px-4 py-3 text-sm">
                                 <i class="bi bi-check-circle-fill text-blue-400 mt-0.5 shrink-0"></i>
-                                <span class="text-blue-300">CLAUDE.md written with mentor mode, caveman ultra, and skill
-                                    usage sections.</span>
+                                <span class="text-blue-300">All 3 files written with identical content: mentor mode, caveman ultra, and skill usage sections.</span>
                             </div>
                         </div>
                         <p class="text-xs text-slate-500 mt-4">Never touches <code
