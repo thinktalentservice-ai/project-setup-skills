@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "Installs a global SessionStart hook that activates caveman ultra mode in every Claude Code session",
   "author": {
-    "name": "Ranjan Kumar Patel",
-    "email": "ranjan.bighadoop@gmail.com"
+    "name": "ThinkTalent Service AI"
   },
   "keywords": ["caveman", "session", "hook", "setup"]
 }
