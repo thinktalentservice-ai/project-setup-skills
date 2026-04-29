@@ -1,6 +1,6 @@
 {
   "name": "claude-md-setup",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Creates or updates CLAUDE.md, AGENTS.md, and .github/copilot-instructions.md in any project with ruthless mentor mode, caveman ultra mode, and skill usage rules",
   "author": {
     "name": "ThinkTalent Service AI"
