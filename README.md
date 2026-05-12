@@ -1,5 +1,7 @@
 # project-setup-skills
 
+**🌐 GitHub Pages: [https://thinktalentservice-ai.github.io/project-setup-skills](https://thinktalentservice-ai.github.io/project-setup-skills)**
+
 A Claude Code plugin marketplace with setup skills for global developer environment configuration.
 
 ## Skills
